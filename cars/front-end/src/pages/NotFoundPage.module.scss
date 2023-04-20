@@ -1,0 +1,18 @@
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    
+}
+h1 {
+    padding-top: 1rem;
+    font-weight: bold;
+
+    span {
+        font-size: 40px;
+    }
+}
+img {
+    width: 200px;
+
+}
