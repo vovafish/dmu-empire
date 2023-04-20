@@ -1,23 +1,46 @@
+.block {
+    background-color: #F8F8F8;
+}
+
 .main {
     display: flex;
     flex-direction: column;
-    
     align-items: center;
 }
-.brands {
+.main > div {
+   
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    
+}
+
+.homeCard {
     max-width: 700px;
     padding-top: 3em;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.brands > div {
+
+.models {
+   max-width: 100%;
+}
+.models>div {
+    border: 1px solid rgba(164, 164, 164, 0.721) !important;
+    img {
+        width: 200px !important;
+    }
+}
+.homeCard>div {
     display: flex;
     flex-direction: column;
     padding: 20px;
     border: 1px solid black;
     margin: 20px;
     align-items: center;
+
     img {
         width: 150px;
         padding-bottom: 15px;
