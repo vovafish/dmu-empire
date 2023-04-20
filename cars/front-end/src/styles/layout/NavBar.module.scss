@@ -1,0 +1,104 @@
+@import '../abstracts/variables';
+
+/*
+nav {
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: $text-color;
+	position: fixed;
+	width: 100%;
+	.logoSite {
+		position: absolute;
+		left: 10px;
+
+		img {
+			width: 200px;
+			border-radius: 30px;
+		}
+	}
+
+	ul {
+		display: flex;
+		width: 30%;
+		justify-content: space-evenly;
+
+		li a {
+			color: $primary-color;
+		}
+	}
+
+	div button {
+		border: none;
+		cursor: pointer;
+		//padding: 0;
+		background: transparent;
+		color: $primary-color;
+	}
+
+	.dropdownBasic {
+		background-color: transparent;
+		border: none;
+	}
+	svg {
+		color: $primary-color; 
+	}
+
+}
+*/
+.nav {
+	display: grid;
+	grid-template-columns: 20% 60% 20%;
+	height: 200px;
+	background-color: $text-color;
+	position: fixed;
+	width: 100%;
+	align-items: center;
+}
+
+.logoSite {
+	grid-column: 1;
+	margin-left: 10px;
+	
+} 
+
+.logoSite img {
+	width: 200px;
+	border-radius: 30px;
+}
+
+.links {
+	grid-column: 2
+}
+
+li a {
+
+	color: $primary-color;
+}
+
+.links ul {
+	display: flex;
+	justify-content: space-evenly;
+	border-right: 2px solid black;
+    border-left: 2px solid black;
+    height: 50px;
+    align-items: center;
+}
+
+.userActivity {
+	display: flex;
+	justify-content: space-around;
+	grid-column: 3;
+	align-items: baseline;
+} .user {
+	color: $primary-color;
+}
+
+.button {
+	border: none;
+	cursor: pointer;
+	background: transparent;
+	color: $primary-color;
+	font-size: inherit;
+}

@@ -1,0 +1,29 @@
+@import '../styles/abstracts/variables';
+
+
+div blockquote {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+    font-size: 2rem;
+    font-style: italic;
+}
+p {
+    padding: 0.5rem 0;
+}
+.description {
+    padding: 1rem;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/car-about-page.avif);
+    background-repeat: no-repeat;
+    background-position: center;
+
+    p {
+        color: $secondary-color;  
+        
+        strong {
+            font-style: italic;
+            color: $secondary-color;
+
+        }
+    }
+}

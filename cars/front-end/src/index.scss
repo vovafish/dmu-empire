@@ -1,0 +1,7 @@
+@import './styles/abstracts/_variables';
+@import './styles/core/_reset';
+@import './styles/core/_settings';
+@import './styles/core/fonts';
+
+@import './styles/layout/NavBar.module';
+@import './pages/AboutPage.module.scss';

@@ -1,0 +1,63 @@
+@import '../styles/abstracts/variables';
+
+.block {
+    background-image: url(https://mcdn.wallpapersafari.com/medium/85/82/vHelWo.jpg);
+    background-color: rgba(0, 0, 0, 0.7);
+    background-blend-mode: multiply;
+    /* background-size: cover; */
+    background-position: center;
+}
+.main {
+    display: flex;
+}
+.mainInfo {
+    width: 50%;
+    button {
+        margin: 5px;
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 5px 15px;
+        background-color: $primary-color;
+        cursor: pointer;
+    }
+    p,h2 {
+        color: $secondary-color;
+    }
+    h2 {
+        font-size: 1.2rem;
+        padding-bottom: 2rem;
+    }
+    p:before {
+        content: "• ";
+        transition: opacity 0.2s ease-in-out;
+    }
+    p:hover::before {
+        opacity: 0;
+    }
+    
+   
+}
+.mainImage {
+    width: 50%;
+    img {
+        width: 600px !important;
+    }
+}
+form {
+    height: 400px;
+    width: 400px;
+}
+form div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 60px;
+}
+
+form div input, textarea {
+    margin-top: 10px;
+}
+
+form div textarea {
+    resize: vertical;
+}

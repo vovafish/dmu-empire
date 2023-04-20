@@ -1,0 +1,15 @@
+main {
+    padding: 3rem 0;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 300px;
+    justify-content: space-evenly;
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+}

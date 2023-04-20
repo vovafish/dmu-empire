@@ -1,0 +1,53 @@
+@import '../styles/abstracts/variables';
+.block {
+    display: flex;
+    background-image: url(https://www.evoximages.com/wp-content/uploads/2021/09/img_0_0_30-e1630602054753.jpg);
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: multiply;
+/*     background-size: cover;
+ */    background-position: bottom;
+}
+.block > div {
+    width: 50%;
+}
+.block > div {
+    width: 50%;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        height: 200px;
+        justify-content: space-evenly;
+    }
+
+    .form>input {
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 5px;
+    }
+
+    .form>button {
+        border-radius: 5px;
+        border: 1px solid gray;
+        padding: 5px;
+        background-color: $primary-color;
+        cursor: pointer;
+    } 
+}
+.options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
