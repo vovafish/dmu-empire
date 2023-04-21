@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- Loding font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+
+
+<title>Search</title>
+</head>
+<body>
+
+<!-- Backgrounds -->
+
+<div id="login-bg" class="container-fluid">
+
+  <div class="bg-img"></div>
+  <div class="bg-color"></div>
+</div>
+
+<!-- End Backgrounds -->
+
+<div class="container" id="login">
+	<div class="row justify-content-center">
+	<div class="col-lg-8">
+	  <div class="login">
+
+		<h1>Flight booking system</h1>
+          <h2>Searching</h2>
+		<!-- Loging form -->
+			  <form action="/search1" method="POST">
+				<div class="form-group">
+				  <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="From:" name="from_text" value="{{value_from_text}}">
+				  
+				</div>
+				<div class="form-group">
+				  <input type="text" class="form-control" id="exampleInputPassword1" placeholder="To:" name="to_text" value="{{value_to_text}}">
+				</div>
+
+				  <div class="form-check">
+
+
+				</div>
+			  
+				<br>
+				<button type="submit" class="btn btn-lg btn-block btn-success">Search</button>
+			  </form>
+          </br>
+          <form action="/" method="POST">
+              <button type="submit" class="btn btn-lg btn-block btn-success">Back</button>
+			  </form>
+		 <!-- End Loging form -->
+        
+        
+        <form action="/buy" method="POST">
+          <div>
+              <!-- {{values}} -->
+              
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">FlightNumber</th>
+                  <th scope="col">From</th>
+                  <th scope="col">To</th>
+                  <th scope="col">StartTime</th>
+                  <th scope="col">EndTime</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Seats</th>
+                  <th scope="col">Buy</th>
+                   
+                </tr>
+              </thead>
+              <tbody>
+                  {% for flight in values %}
+                    <tr>
+                        <td>{{ flight.flightnum }}</td>
+                        <td>{{ flight.fromlocation }}</td>
+                        <td>{{ flight.endlocation }}</td>
+                        <td>{{ flight.starttime }}</td>
+                        <td>{{ flight.endtime }}</td>
+                        <td>{{ flight.price }}</td>
+                        <td>{{ flight.seats }}</td>
+                        <td><input type="radio" name="options" id="option{{flight.num}}" value="option{{flight.num}}"> buy </input></td>
+
+                    </tr>
+                  {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% if values!=[] %}
+          <button type="submit" class="btn btn-lg btn-block btn-success">Buy</button>
+          {% endif %}
+       </form>
+            <div>
+            {{msg}}
+        </div>
+
+    
+	</div>
+	</div>
+</div>
+
+
+</body>
+</html>
