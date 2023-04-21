@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>System operation status display</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		th, td {
+			padding: 10px;
+			border: 1px solid #ccc;
+			text-align: center;
+		}
+		th {
+			background-color: #007bff;
+			color: #fff;
+			font-weight: normal;
+		}
+		.green {
+			background-color: #28a745;
+			color: #fff;
+		}
+		.yellow {
+			background-color: #ffc107;
+			color: #000;
+		}
+		.red {
+			background-color: #dc3545;
+			color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<h1>System operation status display</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Service Name</th>
+				<th>status</th>
+				<th>Response time</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Database Services</td>
+				<td class="green">Normal</td>
+				<td>10ms</td>
+			</tr>
+			<tr>
+				<td>Web server</td>
+				<td class="yellow">Instability</td>
+				<td>100ms</td>
+			</tr>
+			<tr>
+				<td>Payment system</td>
+				<td class="red">Unusual</td>
+				<td>-</td>
+			</tr>
+			<tr>
+				<td>Electronic Ticket System</td>
+				<td class="green">Normal</td>
+				<td>5ms</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

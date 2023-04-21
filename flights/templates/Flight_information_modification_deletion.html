@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flight information management</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+		h1 {
+			text-align: center;
+		}
+		form {
+			max-width: 500px;
+			margin: 0 auto;
+			padding: 20px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			box-shadow: 0 0 5px #ccc;
+		}
+		label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: bold;
+		}
+		input[type="text"], input[type="datetime-local"], select {
+			width: 100%;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+			font-size: 16px;
+		}
+		button[type="submit"] {
+			background-color: #007bff;
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		button[type="submit"]:hover {
+			background-color: #0062cc;
+		}
+	</style>
+</head>
+<body>
+	<h1>Flight information update/delete by FlightNumber, From, and To</h1>
+      <form action="/Flight_information_modification_deletion" method="POST">
+        <div class="mb-3">
+          <label for="flightnumber" class="form-label">FlightNumber:</label>
+          <input type="text" class="form-control" id="flightnumber" name="flightnumber" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="fromlocation" class="form-label">From:</label>
+          <input type="fromlocation" class="form-control" id="fromlocation" name="fromlocation" required>
+        </div>
+          
+        <div class="mb-3">
+          <label for="endlocation" class="form-label">To:</label>
+          <input type="text" class="form-control" id="endlocation" name="endlocation" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="startdate" class="form-label">StartDate:</label>
+          <input type="datetime-local" class="form-control" id="startdate" name="startdate" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="enddate" class="form-label">EndDate:</label>
+          <input type="datetime-local" class="form-control" id="enddate" name="enddate" required>
+        </div>
+          
+        <div class="mb-3">
+          <label for="price" class="form-label">Price($):</label>
+          <input type="price" class="form-control" id="price" name="price" required>
+        </div>
+          
+        <div class="mb-3">
+          <label for="seats" class="form-label">Seats:</label>
+          <input type="seats" class="form-control" id="seats" name="seats" required>
+        </div>
+          
+        <div class="mb-3">
+          <label for="iddelete" class="form-label">IsDelete(Yes/No):</label>
+          <input type="iddelete" class="form-control" id="iddelete" name="iddelete" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Modify</button>
+      </form>
+    <div>
+            {{msg}}
+        </div>
+	<script>
+		function deleteFlight() {
+
+			alert("Delete succeeded!");
+		}
+	</script>
+</body>
+</html>

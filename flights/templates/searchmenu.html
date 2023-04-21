@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+<!-- Loding font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,700" rel="stylesheet">
+
+
+<title>Search</title>
+</head>
+<body>
+
+<!-- Backgrounds -->
+
+<div id="login-bg" class="container-fluid">
+
+  <div class="bg-img"></div>
+  <div class="bg-color"></div>
+</div>
+
+<!-- End Backgrounds -->
+
+<div class="container" id="login">
+	<div class="row justify-content-center">
+	<div class="col-lg-8">
+	  <div class="login">
+
+		<h1>Flight booking system</h1>
+          <h2>Searching</h2>
+		<!-- Loging form -->
+          </br>
+          <form action="/search1" method="POST">
+              <button type="submit" class="btn btn-lg btn-block btn-success">SearchByLocation</button>
+			  </form>
+        </br>
+          <form action="/" method="POST">
+              <button type="submit" class="btn btn-lg btn-block btn-success">SearchByStartTime</button>
+			  </form>
+        </br>
+          <form action="/" method="POST">
+              <button type="submit" class="btn btn-lg btn-block btn-success">SearchByEndTime</button>
+			  </form>
+        </br>
+          <form action="/" method="POST">
+              <button type="submit" class="btn btn-lg btn-block btn-success">SearchByFlightNumber</button>
+			  </form>
+        </br>
+          <form action="/" method="POST">
+              <button type="submit" class="btn btn-lg btn-block btn-success">Back</button>
+			  </form>
+		 <!-- End Loging form -->
+          <div>
+              {{values}}
+          </div>
+	</div>
+	</div>
+</div>
+
+
+</body>
+</html>
