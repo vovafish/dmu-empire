@@ -4,6 +4,7 @@ import logo from './img/logo.png';
 import { useNavigate } from 'react-router-dom';
 import { useToken } from './auth/useToken';
 import { useUser } from './auth/useUser';
+import { useEffect } from 'react';
 
 const NavBar = () => {
   const [token, setToken] = useToken();

@@ -28,17 +28,9 @@ const CarsListPage = () => {
   const [descriptionValue, setDescriptionValue] = useState('');
   const [priceValue, setPriceValue] = useState('');
   const [imageValue, setImageValue] = useState('');
-  const [admin, setAdmin] = useState(false);
 
   const user = useUser();
 
-  /*  if (user === null) {
-    setAdmin(false);
-  } else {
-    setAdmin(true);
-  } */
-
-  console.log(user);
   useEffect(() => {
     const loadCarsInfo = async () => {
       const response = await axios.get('/api/cars');

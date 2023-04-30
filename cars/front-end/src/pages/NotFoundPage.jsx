@@ -13,7 +13,7 @@ const NotFoundPage = () => {
   const randomPhrase = phrases[randomIndex];
   return (
     <div className="mainContainer">
-      <main>
+      <main className={style.main}>
         <h1>
           {randomPhrase} Click on the car
           <Link to="/cars">

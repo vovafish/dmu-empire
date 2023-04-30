@@ -1,3 +1,10 @@
+.main > div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
 .card {
     border: 2px solid black;
     width: 400px;
@@ -5,7 +12,7 @@
     border-radius: 5px;
     display: flex;
     justify-content: space-around;
-
+    margin: 10px;
 }
 
 .card img {

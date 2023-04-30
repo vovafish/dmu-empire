@@ -18,6 +18,7 @@ const CarPage = () => {
   //making vars to track state of carInfo (API response from mongodb)
   const [carInfo, setCarInfo] = useState();
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [error, setError] = useState('');
   //to access the carID of each car object
   const { carId } = useParams();
 
@@ -41,10 +42,10 @@ const CarPage = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          //console.log(result.text);
         },
         (error) => {
-          console.log(error.text);
+          setError('Something wrong :(');
         }
       );
     setModalIsOpen(false);
@@ -69,7 +70,8 @@ const CarPage = () => {
       // Reload the page to update the list of cars
       window.location.reload();
     } catch (error) {
-      console.error(error);
+      //console.error(error);
+      setError('Something went wront');
     }
   };
 
@@ -137,6 +139,7 @@ const CarPage = () => {
             >
               <button onClick={() => setModalIsOpen(false)}>X</button>
               <form ref={form} onSubmit={sendEmail}>
+                {error}
                 <div>
                   <label>Name</label>
                   <input type="text" name="user_name" id="name" required />
@@ -162,7 +165,7 @@ const CarPage = () => {
                   <label>Car</label>
                   <input
                     name="price"
-                    value={carInfo.price}
+                    value={`${carInfo.price}$`}
                     readOnly={true}
                     id="price"
                   />
