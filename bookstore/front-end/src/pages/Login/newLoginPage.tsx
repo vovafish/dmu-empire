@@ -42,7 +42,7 @@ export default function SignInSide() {
             try {
                 console.log('Form submitted');
                 if (formType === 'signin') {
-                    alert(' Sign in')
+                    // alert(' Sign in')
                     // Call API to Sign in
                     const { email, password } = formik.values;
 

@@ -34,7 +34,7 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import { getDetailsById } from '../../api/products.js';
+import {getDetailsById}  from '../../api/products.js';
 import Skeleton from '@mui/material/Skeleton';
 import $bus from '../../tools/$bus';
 
@@ -129,9 +129,12 @@ const ProductDetails = () => {
                                     -
                                 </Button>
                             </Box>
-                            <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={$bus.addCartCount()}>
+                            {/* <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={$bus.addCartCount()}>
                                 Add to Cart
-                            </Button>
+                            </Button> */}
+                            <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => $bus.addCartCount()}>
+  Add to Cart
+</Button>
                         </>
                     )}
                 </Grid>

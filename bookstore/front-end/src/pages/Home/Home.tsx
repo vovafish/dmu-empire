@@ -20,6 +20,14 @@ import {
 import  '@mui/material';
 
 import $bus from '../../tools/$bus';
+interface HomeState {
+  userinfo: {
+    username: string;
+  };
+  cartCount: {
+    count: number;
+  };
+}
 
 const books = [
   {
@@ -94,10 +102,17 @@ const handleLogoClick = () => {
 }
 
 
-class Home extends Component {
+class Home extends Component<{}, HomeState> {
   constructor(props) {
     super(props);
-
+    this.state = {
+      userinfo: {
+        username: "",
+      },
+      cartCount: {
+        count: 0,
+      },
+    };
 
   }
   
@@ -125,7 +140,7 @@ class Home extends Component {
   AddCartCount(e) {
     let data = {...e}
     $bus.setCartCount(data)
-    this.setState({ cartcount: { count: e.count } }, () => {
+    this.setState({ cartCount: { count: e.count } }, () => {
       console.log(e, this.state.cartCount.count);
     });
   }
