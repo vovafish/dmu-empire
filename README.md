@@ -4,5 +4,5 @@ dmu-empire is a uni project based on 4 sub projects that are maintain individual
   <ul>Empire Car - original repo https://github.com/vovafish/car-empire</ul>
   <ul>Empire Flights - </ul>
   <ul>Empire Home Stuff - </ul>
-  <ul>Empire Books - </ul>
+  <ul>Empire BookStore - original repo https://github.com/zhangpeng2k/Empire-BookStore</ul>
 </li>
