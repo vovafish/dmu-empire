@@ -1,0 +1,195 @@
+<%- include('../index_top') %> <%- include('../header') %> <%-
+include('../sidebar') %>
+<div class="page-wrapper">
+  <!--page-content-wrapper-->
+  <div class="page-content-wrapper">
+    <div class="page-content">
+      <!--breadcrumb-->
+      <div class="page-breadcrumb d-none d-md-flex align-items-center mb-3">
+        <div class="breadcrumb-title pr-3"><%= section_title %></div>
+        <div class="pl-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+              <li class="breadcrumb-item">
+                <a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <%= page_title %>
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <div class="ml-auto">
+          <div class="btn-group">
+            <a class="btn btn-primary" href="<%= view_link %>">
+              <i class="bx bx-list-ul"></i>
+              View All
+            </a>
+          </div>
+        </div>
+      </div>
+      <!--end breadcrumb-->
+
+      <div class="row">
+        <div class="col-12 col-lg-9 mx-auto">
+          <div class="card radius-15">
+            <div class="card-body">
+              <div class="card-title">
+                <h4 class="mb-0"><%= add_title %></h4>
+              </div>
+              <hr />
+              <form
+                action="/product/add"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <div class="form-body">
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Subcategory</label>
+                    <div class="col-sm-10">
+                      <select name="subcategory_id" class="form-control" required>
+                        <option value=""></option>
+                      <% console.log(fetch_subcategory)
+                      fetch_subcategory.map((item,index)=>{ %> 
+                        <option value="<%= item._id %>"><%= item.title %></option>
+                        <% }); %>
+                        </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Title</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        name="title"
+                        class="form-control"
+                        value=""
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Price</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="text"
+                        name="price"
+                        class="form-control"
+                        value=""
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Description</label>
+                    <div class="col-sm-10">
+                      <textarea name="description" rows="5" class="form-control"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Thumbnail</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="file"
+                        name="thumbnail"
+                        class="form-control"
+                        value=""
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image 1</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="file"
+                        name="image1"
+                        class="form-control"
+                        value=""
+                        
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image 2</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="file"
+                        name="image2"
+                        class="form-control"
+                        value=""
+                        
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image 3</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="file"
+                        name="image3"
+                        class="form-control"
+                        value=""
+                        
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image 4</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="file"
+                        name="image4"
+                        class="form-control"
+                        value=""
+                        
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Image 5</label>
+                    <div class="col-sm-10">
+                      <input
+                        type="file"
+                        name="image5"
+                        class="form-control"
+                        value=""
+                        
+                      />
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                      <button
+                        type="submit"
+                        name="sub"
+                        value="submit"
+                        class="btn btn-primary px-4"
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--end row-->
+    </div>
+  </div>
+  <!--end page-content-wrapper-->
+</div>
+<%- include('../index_bottom') %>
