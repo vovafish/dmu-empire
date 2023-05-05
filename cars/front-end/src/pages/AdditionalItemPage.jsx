@@ -17,6 +17,7 @@ const AdditionalItemPage = () => {
               <div>
                 <p>Car window tinting</p>
                 <p>Price: 13.99£</p>
+                <p>№ 1</p>
               </div>
             </div>
             <div className={style.card}>
@@ -29,6 +30,7 @@ const AdditionalItemPage = () => {
               <div>
                 <p>CCHZ-WIN Mirror Dash Cam 4.3 Inches Full HD 1080P</p>
                 <p>Price: 42.99£</p>
+                <p>№ 2</p>
               </div>
             </div>
             <div className={style.card}>
@@ -44,6 +46,7 @@ const AdditionalItemPage = () => {
                   Interior Ornament Decoration for Car Decoration
                 </p>
                 <p>Price: 13.99£</p>
+                <p>№ 3</p>
               </div>
             </div>
             <div className={style.card}>
@@ -61,6 +64,7 @@ const AdditionalItemPage = () => {
                   200G
                 </p>
                 <p>Price: 10.99£</p>
+                <p>№ 4</p>
               </div>
             </div>
             <div className={style.card}>
@@ -77,6 +81,7 @@ const AdditionalItemPage = () => {
                   for Car SUV Trucks Traffic Safety - Pack 2
                 </p>
                 <p>Price: 3.99£</p>
+                <p>№ 5</p>
               </div>
             </div>
             <div className={style.card}>
@@ -94,6 +99,7 @@ const AdditionalItemPage = () => {
                   G-sensor
                 </p>
                 <p>Price: 50.99£</p>
+                <p>№ 6</p>
               </div>
             </div>
             <div className={style.card}>
@@ -111,6 +117,7 @@ const AdditionalItemPage = () => {
                   Product, Gift Set
                 </p>
                 <p>Price: 26.99£</p>
+                <p>№ 7</p>
               </div>
             </div>
             <div className={style.card}>
@@ -127,6 +134,7 @@ const AdditionalItemPage = () => {
                   heavier soiling - incl. hose reel and car & home kit
                 </p>
                 <p>Price: 13.99£</p>
+                <p>№ 8</p>
               </div>
             </div>
             <div className={style.card}>
@@ -143,6 +151,7 @@ const AdditionalItemPage = () => {
                   USB Adapter - Secure Gel Pad Included
                 </p>
                 <p>Price: 89.99£</p>
+                <p>№ 9</p>
               </div>
             </div>
             <div className={style.card}>
@@ -160,6 +169,7 @@ const AdditionalItemPage = () => {
                   Fits Most Vehicles
                 </p>
                 <p>Price: 19.99£</p>
+                <p>№ 10</p>
               </div>
             </div>
             <div className={style.card}>
@@ -177,6 +187,7 @@ const AdditionalItemPage = () => {
                   13 12 11 Samsung
                 </p>
                 <p>Price: 7.95£</p>
+                <p>№ 11</p>
               </div>
             </div>
             <div className={style.card}>
@@ -193,6 +204,7 @@ const AdditionalItemPage = () => {
                   Airplane
                 </p>
                 <p>Price: 89.99£</p>
+                <p>№ 12</p>
               </div>
             </div>
             <div className={style.card}>
@@ -209,6 +221,7 @@ const AdditionalItemPage = () => {
                   Box with Jumper Cables for all gasoline or 10L diesel engines
                 </p>
                 <p>Price: 199.99£</p>
+                <p>№ 13</p>
               </div>
             </div>
             <div className={style.card}>
@@ -226,6 +239,7 @@ const AdditionalItemPage = () => {
                   Cars, Trucks, SUV
                 </p>
                 <p>Price: 23.99£</p>
+                <p>№ 14</p>
               </div>
             </div>
             <div className={style.card}>
@@ -240,6 +254,7 @@ const AdditionalItemPage = () => {
                   Graco Turn2Me 360° Rotating IsoFix Car Seat, Black, 1 Count
                 </p>
                 <p>Price: 149.99£</p>
+                <p>№ 15</p>
               </div>
             </div>
           </div>
