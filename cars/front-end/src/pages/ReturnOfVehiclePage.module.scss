@@ -1,6 +1,9 @@
+@import '../styles/abstracts/variables';
+
 main {
     padding: 3rem 0;
 }
+
 .form {
     display: flex;
     flex-direction: column;
@@ -11,5 +14,15 @@ main {
     div {
         display: flex;
         flex-direction: column;
+
+        input[type=submit] {
+
+            border-radius: 5px;
+            border: 1px solid gray;
+            padding: 5px;
+            background-color: $primary-color;
+            cursor: pointer;
+
+        }
     }
 }

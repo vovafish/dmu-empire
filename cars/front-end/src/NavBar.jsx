@@ -50,13 +50,17 @@ const NavBar = () => {
             <button className={style.button} onClick={logOut}>
               Logout
             </button>
-            <h3 className={style.user}>Hi, {user.first_name}</h3>
+
+            <Link to="/profile">
+              <h3 className={style.user}>Hi, {user.first_name}</h3>
+            </Link>
           </>
         ) : (
           <>
             <button className={style.button} onClick={logIn}>
               Login
             </button>
+
             <h3 className={style.user}>Hi, customer</h3>
           </>
         )}
