@@ -1,7 +1,16 @@
 @import '../styles/abstracts/variables';
 
-main {
-    padding: 3rem 0;
+.main {
+    padding: 0 0 3rem 0;
+}
+
+
+.main > button {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    background-color: $primary-color;
+    cursor: pointer;
 }
 
 .form {
