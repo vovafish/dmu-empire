@@ -34,7 +34,7 @@ const SignUpPage = () => {
     const response = await axios.post('/api/signup', {
       first_name: firstNameValue,
       last_name: lastNameValue,
-      phone_number: phone_number, //
+      phone_number: phone_number,
       email: emailValue,
       password: passwordValue,
     });

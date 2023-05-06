@@ -7,6 +7,7 @@ a {
 }
 .mainContainer {
     width: 90%;
+	min-height: 50vh;
     margin: auto;
 	padding: 200px 0 0 0;
 }
@@ -24,4 +25,10 @@ a {
 	color: red;
 	font-weight: bold;
 }
-
+.main-btn {
+	border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    background-color: $primary-color;
+    cursor: pointer;
+}

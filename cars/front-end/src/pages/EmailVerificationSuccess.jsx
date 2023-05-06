@@ -5,11 +5,13 @@ export const EmailVerificationSuccess = () => {
 
   return (
     <div className="mainContainer">
-      <div>
+      <div style={{ padding: '3rem 0' }}>
         <h1>Success!</h1>
         <p>Thanks for verifying your email </p>
+        <button className="main-btn" onClick={() => navigate('/')}>
+          Go to Home page
+        </button>
       </div>
-      <button onClick={() => navigate('/')}>Go to Home page</button>
     </div>
   );
 };

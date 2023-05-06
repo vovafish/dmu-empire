@@ -9,7 +9,9 @@ export const EmailVerificationFail = () => {
         <h1>Uh oh...</h1>
         <p>Something went wrong while trying to verify your email</p>
       </div>
-      <button onClick={() => navigate('/signup')}>Back to Sign Up</button>
+      <button className="main-btn" onClick={() => navigate('/signup')}>
+        Back to Sign Up
+      </button>
     </div>
   );
 };

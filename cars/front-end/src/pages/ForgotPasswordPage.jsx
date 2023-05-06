@@ -22,26 +22,30 @@ const ForgotPasswordPage = () => {
 
   return success ? (
     <div className="mainContainer">
-      <div>
+      <main className={style.main}>
         <h1>Success</h1>
         <p>Check your email for reset link</p>
-      </div>
+      </main>
     </div>
   ) : (
     <div className="mainContainer">
-      <div>
-        <h1>Forgot Password</h1>
-        <p>Enter your email and we will send you a reset link</p>
+      <main className={style.main}>
+        <h1>Do you want to make a new password?</h1>
+        <p>Please enter your email and we will send you a reset link :)</p>
         {errorMessage && <div>{errorMessage}</div>}
         <input
           value={emailValue}
           onChange={(e) => setEmailValue(e.target.value)}
           placeholder="someone@gmail.com"
         />
-        <button disabled={!emailValue} onClick={onSubmitClicked}>
+        <button
+          className="main-btn"
+          disabled={!emailValue}
+          onClick={onSubmitClicked}
+        >
           Send Reset Link
         </button>
-      </div>
+      </main>
     </div>
   );
 };

@@ -1,56 +1,9 @@
 @import '../abstracts/variables';
 
-/*
-nav {
-	height: 200px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: $text-color;
-	position: fixed;
-	width: 100%;
-	.logoSite {
-		position: absolute;
-		left: 10px;
-
-		img {
-			width: 200px;
-			border-radius: 30px;
-		}
-	}
-
-	ul {
-		display: flex;
-		width: 30%;
-		justify-content: space-evenly;
-
-		li a {
-			color: $primary-color;
-		}
-	}
-
-	div button {
-		border: none;
-		cursor: pointer;
-		//padding: 0;
-		background: transparent;
-		color: $primary-color;
-	}
-
-	.dropdownBasic {
-		background-color: transparent;
-		border: none;
-	}
-	svg {
-		color: $primary-color; 
-	}
-
-}
-*/
 .nav {
 	display: grid;
 	grid-template-columns: 20% 60% 20%;
-	height: 200px;
+	height: 25vh; //200px;
 	background-color: $text-color;
 	position: fixed;
 	width: 100%;

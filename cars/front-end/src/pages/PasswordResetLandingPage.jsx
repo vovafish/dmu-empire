@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { PasswordResetSuccess } from './PasswordResetSuccess';
 import { PasswordResetFail } from './PasswordResetFail';
+import style from './Password.module.scss';
 
 export const PasswordResetLandingPage = () => {
   const [passwordValue, setPasswordValue] = useState('');
@@ -29,30 +30,33 @@ export const PasswordResetLandingPage = () => {
 
   return (
     <div className="mainContainer">
-      <h1>Reset Password</h1>
-      <p>Please enter a new password!</p>
-      <input
-        type="password"
-        value={passwordValue}
-        onChange={(e) => setPasswordValue(e.target.value)}
-        placeholder="Password"
-      />
-      <input
-        type="password"
-        value={confirmPasswordValue}
-        onChange={(e) => setConfirmPasswordValue(e.target.value)}
-        placeholder="Confirm password"
-      />
-      <button
-        disabled={
-          !passwordValue ||
-          !confirmPasswordValue ||
-          passwordValue !== confirmPasswordValue
-        }
-        onClick={onResetClicked}
-      >
-        Reset Password
-      </button>
+      <main className={style.main}>
+        <h1>Reset Password</h1>
+        <p>Please enter a new password!</p>
+        <input
+          type="password"
+          value={passwordValue}
+          onChange={(e) => setPasswordValue(e.target.value)}
+          placeholder="Password"
+        />
+        <input
+          type="password"
+          value={confirmPasswordValue}
+          onChange={(e) => setConfirmPasswordValue(e.target.value)}
+          placeholder="Confirm password"
+        />
+        <button
+          className="main-btn"
+          disabled={
+            !passwordValue ||
+            !confirmPasswordValue ||
+            passwordValue !== confirmPasswordValue
+          }
+          onClick={onResetClicked}
+        >
+          Reset Password
+        </button>
+      </main>
     </div>
   );
 };
