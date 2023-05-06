@@ -1,10 +1,3 @@
-/* 
-Importing all the needs:
-Hooks from React
-axios library - serves to create HTTP request
-NotFoundPage page
-Styling file
-*/
 import { useState, useEffect, useRef } from 'react';
 import Modal from 'react-modal';
 import { useParams } from 'react-router-dom';
@@ -26,6 +19,7 @@ const CarPage = () => {
 
   const user = useUser();
 
+  // Open the purchase modal when clicking the button
   const handlePurchase = () => {
     setModalIsOpen(true);
   };
@@ -70,16 +64,14 @@ const CarPage = () => {
       // Reload the page to update the list of cars
       window.location.reload();
     } catch (error) {
-      //console.error(error);
-      setError('Something went wront');
+      setError('Something went wrong');
     }
   };
 
   /* 
-  Create affect that run when carId var being used.
-  It gets the response from the specific http
-  Then getting reponse data into newCarInfo
-  and updating the state of the carInfo
+  Create an effect that runs when carId var is being used.
+  It sends a GET request to the server with the specific carId and retrieves a response.
+  The response data is assigned to newCarInfo and used to update the state of the carInfo.
   */
   useEffect(() => {
     const loadCarInfo = async () => {
@@ -90,11 +82,10 @@ const CarPage = () => {
     loadCarInfo();
   }, [carId]);
 
-  //if carInfo is empty/ no car then return to the NotFoundPagew
+  //if carInfo is empty/ no car then return to the NotFoundPage
   if (!carInfo) {
     return <NotFoundPage />;
   }
-
   /* Creating the HTML that will be displayed when navigate to the CarPage */
   return (
     //creating main container

@@ -1,15 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useUser } from '../auth/useUser';
-import Modal from 'react-modal';
-import axios from 'axios';
-import style from './CarsListPage.module.scss';
+import { useState, useEffect } from 'react'; // Importing hooks from React library
+import { Link } from 'react-router-dom'; // Importing Link component from React Router library
+import { useUser } from '../auth/useUser'; // Importing useUser custom hook
+import Modal from 'react-modal'; // Importing Modal component from react-modal library
+import axios from 'axios'; // Importing axios library
+import style from './CarsListPage.module.scss'; // Importing styles
 
 const CarsListPage = () => {
-  const [carsInfo, setCarsInfo] = useState([]);
+  // Defining a functional component called CarsListPage
+  const [carsInfo, setCarsInfo] = useState([]); // Using the useState hook to initialize carsInfo state with an empty array
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false); // Using the useState hook to initialize modalIsOpen state with a boolean value of false
 
+  // Using the useState hook to initialize multiple states for each form input field
   const [nameValue, setNameValue] = useState('');
   const [titleValue, setTitleValue] = useState('');
   const [yearValue, setYearValue] = useState('');
@@ -29,9 +31,10 @@ const CarsListPage = () => {
   const [priceValue, setPriceValue] = useState('');
   const [imageValue, setImageValue] = useState('');
 
-  const user = useUser();
+  const user = useUser(); // Assigning the useUser hook to a variable called user
 
   useEffect(() => {
+    // Using the useEffect hook to fetch cars data from the API and update carsInfo state when the component mounts
     const loadCarsInfo = async () => {
       const response = await axios.get('/api/cars');
       const newCarsInfo = response.data;
@@ -40,6 +43,7 @@ const CarsListPage = () => {
     loadCarsInfo();
   }, []);
 
+  // Setting custom styles for the modal
   const customStyles = {
     content: {
       top: '50%',
@@ -54,8 +58,10 @@ const CarsListPage = () => {
   };
 
   const onInsertCar = async () => {
-    setModalIsOpen(false);
+    // Function to handle insertion of new car data into the API
+    setModalIsOpen(false); // Closing the modal
     await axios.post('/api/cars', {
+      // Making a POST request to the API to add the new car data
       name: nameValue,
       title: titleValue,
       year: yearValue,
