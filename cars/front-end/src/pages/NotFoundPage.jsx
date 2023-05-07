@@ -2,6 +2,7 @@ import style from './NotFoundPage.module.scss';
 import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
+  // An array of different phrases that will be randomly displayed on the 404 page
   const phrases = [
     "Looks like you took a wrong turn, but don't worry - even GPS gets lost sometimes!",
     "Ruh-roh, you've hit a dead end - time to rev up and try a new route!",
@@ -9,8 +10,11 @@ const NotFoundPage = () => {
     'Oops, it looks like your car has gone rogue - better bring out the mechanic!',
     "Lost on the open road? Don't worry, we'll help you find your way back to the fast lane!",
   ];
+
+  // Randomly select a phrase from the array
   const randomIndex = Math.floor(Math.random() * phrases.length);
   const randomPhrase = phrases[randomIndex];
+
   return (
     <div className="mainContainer">
       <main className={style.main}>

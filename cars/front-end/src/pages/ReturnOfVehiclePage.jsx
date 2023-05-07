@@ -3,11 +3,15 @@ import emailjs from '@emailjs/browser';
 import style from './ReturnOfVehiclePage.module.scss';
 import { Link } from 'react-router-dom';
 
+// Define component called ReturnOfVehiclePage
 const ReturnOfVehiclePage = () => {
+  // Set up a state variable called showMessage and its corresponding function setShowMessage with a default value of false
   const [showMessage, setShowMessage] = useState(false);
 
+  // Set up a reference to a form element called form
   const form = useRef();
 
+  // Define a function called sendEmail that prevents the default form submission behavior, sets showMessage to true, and uses the emailjs library to send the form data as an email
   const sendEmail = (e) => {
     e.preventDefault();
     setShowMessage(true);
@@ -27,11 +31,11 @@ const ReturnOfVehiclePage = () => {
         }
       );
   };
+
   return (
     <div className="mainContainer">
       <main className={style.main}>
         <h1 className="main-title">Return of Vehucle Page</h1>
-        {console.log(showMessage)}
         {!showMessage ? (
           <form ref={form} onSubmit={sendEmail} className={style.form}>
             <div>

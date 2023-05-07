@@ -6,27 +6,28 @@ import { PasswordResetFail } from './PasswordResetFail';
 import style from './Password.module.scss';
 
 export const PasswordResetLandingPage = () => {
-  const [passwordValue, setPasswordValue] = useState('');
-  const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState(''); // State variable for password input
+  const [confirmPasswordValue, setConfirmPasswordValue] = useState(''); // State variable for confirm password input
 
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isFailure, setIsFailuer] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false); // State variable to track if password reset is successful
+  const [isFailure, setIsFailuer] = useState(false); // State variable to track if password reset failed
 
-  const { passwordResetCode } = useParams();
+  const { passwordResetCode } = useParams(); // Get password reset code from URL params
 
   const onResetClicked = async () => {
     try {
       await axios.put(`/api/users/${passwordResetCode}/reset-password`, {
-        newPassword: passwordValue,
+        // Send PUT request to reset password
+        newPassword: passwordValue, // Send new password in the request body
       });
-      setIsSuccess(true);
+      setIsSuccess(true); // Update success state variable
     } catch (e) {
-      setIsFailuer(true);
+      setIsFailuer(true); // Update failure state variable
     }
   };
 
-  if (isFailure) return <PasswordResetFail />;
-  if (isSuccess) return <PasswordResetSuccess />;
+  if (isFailure) return <PasswordResetFail />; // Render PasswordResetFail component if reset fails
+  if (isSuccess) return <PasswordResetSuccess />; // Render PasswordResetSuccess component if reset succeeds
 
   return (
     <div className="mainContainer">

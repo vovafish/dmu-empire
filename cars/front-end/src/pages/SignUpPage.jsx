@@ -5,7 +5,8 @@ import { useToken } from '../auth/useToken';
 import style from '../pages/SignUpPage.module.scss';
 
 const SignUpPage = () => {
-  const [token, setToken] = useToken();
+  // State hooks for storing form input values and token
+  const [, setToken] = useToken();
   const [firstNameValue, setFirstNameValue] = useState('');
   const [lastNameValue, setLastNameValue] = useState('');
   const [numberValue, setNumberValue] = useState('');
@@ -14,15 +15,20 @@ const SignUpPage = () => {
   const [confirmPasswordValue, setConfirmPasswordValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Custom hook for navigation
   const navigate = useNavigate();
 
+  // Function to validate UK phone number using regex
   const validatePhoneNumber = (number) => {
     const numberRegex = /^(\+44|0)\d{10}$/;
     return numberRegex.test(number);
   };
 
+  // Function to handle sign up button click event
   const onSignUpClicked = async () => {
     let phone_number = '';
+
+    // Validate phone number if provided
     if (numberValue.trim() !== '') {
       if (!/^(\+44|0)[1-9]\d{8,9}$/.test(numberValue.trim())) {
         setErrorMessage('Please enter a valid UK phone number');
@@ -31,6 +37,7 @@ const SignUpPage = () => {
       phone_number = numberValue.trim();
     }
 
+    // Make API call to sign up user with provided information
     const response = await axios.post('/api/signup', {
       first_name: firstNameValue,
       last_name: lastNameValue,
@@ -39,10 +46,12 @@ const SignUpPage = () => {
       password: passwordValue,
     });
 
+    // Store token in local storage and navigate to verify email page
     const { token } = response.data;
     setToken(token);
     navigate('/please-verify');
   };
+
   return (
     <div className={style.block}>
       <div></div>

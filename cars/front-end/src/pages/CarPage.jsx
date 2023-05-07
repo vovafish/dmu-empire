@@ -35,9 +35,7 @@ const CarPage = () => {
         'wa_301WBehLKeEt_a'
       )
       .then(
-        (result) => {
-          //console.log(result.text);
-        },
+        (result) => {},
         (error) => {
           setError('Something wrong :(');
         }
@@ -105,7 +103,7 @@ const CarPage = () => {
           </div>
           <div className={style.mainInfo}>
             <h2>
-              This is brand new {carInfo.name} and been menufactured in{' '}
+              This is brand new {carInfo.name} and been manufactured in{' '}
               {carInfo.year}
             </h2>
             <p>Color: {carInfo.colour}</p>
@@ -141,7 +139,11 @@ const CarPage = () => {
                 </div>
                 <div>
                   <label>Message</label>
-                  <textarea name="message" id="message" />
+                  <textarea
+                    name="message"
+                    id="message"
+                    placeholder="Here you can specify what extras do you want to be pre-installed in your car. Just say number or name of it :)"
+                  />
                 </div>
                 <div>
                   <label>Car</label>

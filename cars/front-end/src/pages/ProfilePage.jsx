@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import style from './ProfilePage.module.scss';
 import { useUser } from '../auth/useUser';
 
@@ -16,7 +15,6 @@ const ProfilePage = () => {
             Phone number:{' '}
             {user.phone_number ? user.phone_number : 'Not provided'}
           </p>
-          {console.log(user)}
         </div>
       </main>
     </div>

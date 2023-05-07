@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export const PleaseVerifyEamilPage = () => {
   const navigate = useNavigate();
 
+  // Redirect to cars page after 3 seconds
   useEffect(() => {
     setTimeout(() => {
       navigate('/cars');

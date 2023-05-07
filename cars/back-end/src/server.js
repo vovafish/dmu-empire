@@ -77,7 +77,6 @@ app.delete('/api/cars/:name', async (req, res) => {
 // Handling a GET request for all cars
 app.get('/api/cars', async (req, res) => {
   const cars = await db.collection('cars').find({}).toArray();
-  console.log(cars);
   if (cars) {
     res.json(cars);
   } else {

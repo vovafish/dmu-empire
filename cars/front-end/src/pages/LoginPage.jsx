@@ -5,24 +5,32 @@ import { useToken } from '../auth/useToken';
 import style from '../pages/LoginPage.module.scss';
 
 const LoginPage = () => {
-  const [token, setToken] = useToken();
+  const [, setToken] = useToken();
   const [emailValue, setEmailValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
   const navigate = useNavigate();
 
+  // Function to handle user login
   const onLogInClicked = async () => {
     try {
+      // Send login request to server
       const response = await axios.post('/api/login', {
         email: emailValue,
         password: passwordValue,
       });
 
+      // Extract token from server response
       const { token } = response.data;
+
+      // Store token in local storage
       setToken(token);
+
+      // Navigate to the cars page
       navigate('/cars');
     } catch (error) {
+      // Handle login error
       if (error.response && error.response.status === 401) {
         setErrorMessage('Email or password is incorrect.');
       } else {
@@ -30,6 +38,7 @@ const LoginPage = () => {
       }
     }
   };
+
   return (
     <div className={style.block}>
       <div></div>
