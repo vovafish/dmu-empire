@@ -1,10 +1,13 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { Router } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 import CarsListPage from './pages/CarsListPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import emailjs from '@emailjs/browser';
 import ReturnOfVehiclePage from './pages/ReturnOfVehiclePage.jsx';
+import { validatePhoneNumber } from './pages/SignUpPage.jsx';
 import App from './App.js';
 
 // Test that the App component renders without crashing
@@ -35,7 +38,12 @@ describe('ReturnOfVehiclePage', () => {
     jest.spyOn(emailjs, 'sendForm').mockImplementation(sendFormMock);
 
     // Render the ReturnOfVehiclePage component
-    render(<ReturnOfVehiclePage />);
+
+    render(
+      <MemoryRouter>
+        <ReturnOfVehiclePage />
+      </MemoryRouter>
+    );
 
     // Fill in the form fields
     const nameInput = screen.getByLabelText('Name');
@@ -58,5 +66,39 @@ describe('ReturnOfVehiclePage', () => {
       expect.any(HTMLFormElement),
       'OobbSW-DHtFMhWbqK'
     );
+  });
+});
+
+describe('SignUpPage', () => {
+  describe('validatePhoneNumber', () => {
+    it('returns true for valid UK phone numbers', () => {
+      render(
+        <MemoryRouter>
+          <SignUpPage />
+        </MemoryRouter>
+      );
+      const input = screen.getByPlaceholderText('01234567890 (optional)');
+
+      fireEvent.change(input, { target: { value: '07123456789' } });
+      expect(input.value).toBe('07123456789');
+
+      const isValid = validatePhoneNumber(input.value);
+      expect(isValid).toBe(true);
+    });
+
+    it('returns false for invalid UK phone numbers', () => {
+      render(
+        <MemoryRouter>
+          <SignUpPage />
+        </MemoryRouter>
+      );
+      const input = screen.getByPlaceholderText('01234567890 (optional)');
+
+      fireEvent.change(input, { target: { value: '071234567' } });
+      expect(input.value).toBe('071234567');
+
+      const isValid = validatePhoneNumber(input.value);
+      expect(isValid).toBe(false);
+    });
   });
 });

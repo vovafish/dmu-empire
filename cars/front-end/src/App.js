@@ -31,7 +31,7 @@ function App() {
           {/* Set up the routes using the Routes component */}
           <Routes>
             {/* Home page route */}
-            <Route path="/" element={<HomePage />} />
+            <Route exact path="/" element={<HomePage />} />
             {/* Email verification route with a dynamic parameter */}
             <Route
               path="verify-email/:verificationString"
@@ -71,7 +71,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            Catch-all route for unknown URLs
+            {/* Catch-all route for unknown URLs */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>

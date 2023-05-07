@@ -4,6 +4,11 @@ import axios from 'axios';
 import { useToken } from '../auth/useToken';
 import style from '../pages/SignUpPage.module.scss';
 
+export const validatePhoneNumber = (number) => {
+  const numberRegex = /^(\+44|0)\d{10}$/;
+  return numberRegex.test(number);
+};
+
 const SignUpPage = () => {
   // State hooks for storing form input values and token
   const [, setToken] = useToken();
@@ -19,10 +24,6 @@ const SignUpPage = () => {
   const navigate = useNavigate();
 
   // Function to validate UK phone number using regex
-  const validatePhoneNumber = (number) => {
-    const numberRegex = /^(\+44|0)\d{10}$/;
-    return numberRegex.test(number);
-  };
 
   // Function to handle sign up button click event
   const onSignUpClicked = async () => {
@@ -30,7 +31,7 @@ const SignUpPage = () => {
 
     // Validate phone number if provided
     if (numberValue.trim() !== '') {
-      if (!/^(\+44|0)[1-9]\d{8,9}$/.test(numberValue.trim())) {
+      if (!validatePhoneNumber(numberValue.trim())) {
         setErrorMessage('Please enter a valid UK phone number');
         return;
       }
@@ -77,7 +78,8 @@ const SignUpPage = () => {
                 value={numberValue}
                 onChange={(e) => setNumberValue(e.target.value)}
                 type="tel"
-                placeholder="01234 567890 (optional)"
+                placeholder="01234567890 (optional)"
+                name="phone"
               />
               <input
                 value={emailValue}
