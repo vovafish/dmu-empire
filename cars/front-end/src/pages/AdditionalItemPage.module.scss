@@ -1,5 +1,6 @@
 @import '../styles/abstracts/variables';
 
+/* This styles the div that contains the main content */
 .main > div {
     display: flex;
     flex-direction: row;
@@ -7,6 +8,7 @@
     justify-content: center;
 }
 
+/* This styles the cards that display the product information */
 .card {
     border: 2px solid black;
     width: 400px;
@@ -17,12 +19,13 @@
     margin: 10px;
     transition: 1s;
 
+    /* This styles the hover effect on the cards */
     &:hover {
         box-shadow: 1px 2px 10px 10px $primary-color;
-       
     }
 }
 
+/* This styles the image on the cards */
 .card img {
     width: 200px;
     height: 200px;

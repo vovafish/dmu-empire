@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import { Router } from 'react-router-dom';
 import { MemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 import CarsListPage from './pages/CarsListPage.jsx';

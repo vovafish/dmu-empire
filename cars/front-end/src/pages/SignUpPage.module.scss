@@ -1,58 +1,89 @@
+/* Import variables from another file */
 @import '../styles/abstracts/variables';
 
+/* Style for the parent element */
 .block {
     display: flex;
+    /* Set the background image */
     background-image: url(https://www.evoximages.com/wp-content/uploads/2021/09/img_0_0_30-e1630602054753.jpg);
+    /* Set the background color with opacity */
     background-color: rgba(0, 0, 0, 0.4);
+    /* Blend the background image and color */
     background-blend-mode: multiply;
-    /*     background-size: cover;
- */
+    /* Set the background position */
     background-position: bottom;
 }
 
+/* Style for the child element */
 .block>div {
+    /* Set the width of the child element */
     width: 50%;
 }
 
+/* Style for the child element */
 .block > div {
+    /* Set the width of the child element */
     width: 50%;
 }
 
+/* Style for the parent element */
 .main {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+    /* Style for the child element */
     .form {
         display: flex;
         flex-direction: column;
+        /* Set the width of the child element */
         width: 300px;
+        /* Set the height of the child element */
         height: 300px;
+        /* Space the child elements evenly */
         justify-content: space-evenly;
     }
 }
 
+/* Style for the input element inside the form */
 .form>input {
+    /* Set the border radius */
     border-radius: 5px;
+    /* Set the border */
     border: 1px solid gray;
+    /* Set the padding */
     padding: 5px;
 }
 
+/* Style for the button element inside the form */
 .form>button {
+    /* Set the border radius */
     border-radius: 5px;
+    /* Set the border */
     border: 1px solid gray;
+    /* Set the padding */
     padding: 5px;
+    /* Set the background color using the primary color defined in the variables file */
     background-color: $primary-color;
+    /* Set the cursor to a pointer */
     cursor: pointer;
 }
+
+/* Style for the parent element */
 .options {
     display: flex;
+    /* Center the child elements horizontally */
     justify-content: center;
 }
 
+/* Style for the button element */
 .btn {
+    /* Remove the border */
     border: none;
+    /* Set the background color to transparent */
     background-color: transparent;
+    /* Set the border bottom */
     border-bottom: 1px solid black;
+    /* Set the cursor to a pointer */
     cursor: pointer;
 }

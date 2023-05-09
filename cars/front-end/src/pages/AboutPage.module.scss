@@ -1,6 +1,7 @@
+// Import variable definitions
 @import '../styles/abstracts/variables';
 
-
+// Select the blockquote element within a div element
 div blockquote {
     display: flex;
     justify-content: center;
@@ -8,22 +9,30 @@ div blockquote {
     font-size: 2rem;
     font-style: italic;
 }
+
+// Select all p elements
 p {
     padding: 0.5rem 0;
 }
+
+// Select the element with class "description"
 .description {
     padding: 1rem;
+    // Apply a gradient background using the specified colors and image
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/car-about-page.avif);
     background-repeat: no-repeat;
     background-position: center;
 
+    // Select all p elements within the element with class "description"
     p {
+        // Set the text color to the secondary color variable
         color: $secondary-color;  
         
+        // Select all strong elements within p elements
         strong {
             font-style: italic;
+            // Set the text color to the secondary color variable
             color: $secondary-color;
-
         }
     }
 }

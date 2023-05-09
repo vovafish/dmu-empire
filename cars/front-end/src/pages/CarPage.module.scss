@@ -1,17 +1,24 @@
+// Importing variables from abstracts folder
 @import '../styles/abstracts/variables';
 
+// Applying background image and color to the block
 .block {
     background-image: url(https://mcdn.wallpapersafari.com/medium/85/82/vHelWo.jpg);
     background-color: rgba(0, 0, 0, 0.7);
     background-blend-mode: multiply;
-    /* background-size: cover; */
     background-position: center;
 }
+
+// Setting display property to flex for main class
 .main {
     display: flex;
 }
+
+// Setting width and styling for the main information container
 .mainInfo {
     width: 50%;
+
+    // Styling for button element inside mainInfo
     button {
         margin: 5px;
         border-radius: 5px;
@@ -20,29 +27,41 @@
         background-color: $primary-color;
         cursor: pointer;
     }
+
+    // Setting color and other styles for h2 and p elements
     p,h2 {
         color: $secondary-color;
     }
+
+    // Setting font size and padding for h2 element
     h2 {
         font-size: 1.2rem;
         padding-bottom: 2rem;
     }
+
+    // Adding bullet point before each p element
     p:before {
         content: "• ";
         transition: opacity 0.2s ease-in-out;
     }
+
+    // Setting opacity to 0 on hover for bullet point
     p:hover::before {
         opacity: 0;
     }
-    
-   
 }
+
+// Setting width for the main image container
 .mainImage {
     width: 50%;
+
+    // Styling for image inside mainImage container
     img {
         width: 600px !important;
     }
 }
+
+// Styling for the form element
 form {
     display: flex;
     flex-direction: column;
@@ -50,6 +69,8 @@ form {
     min-height: 450px;
     width: 400px;
 }
+
+// Styling for div element inside form element
 form div {
     display: flex;
     flex-direction: column;
@@ -57,10 +78,12 @@ form div {
     height: 60px;
 }
 
+// Styling for input and textarea elements inside div element of form
 form div input, textarea {
     margin-top: 10px;
 }
 
+// Styling for textarea element inside div element of form
 form div textarea {
     resize: vertical;
     min-height: 45px;

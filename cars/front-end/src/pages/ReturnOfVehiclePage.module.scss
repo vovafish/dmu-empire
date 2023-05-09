@@ -1,37 +1,55 @@
 @import '../styles/abstracts/variables';
 
+/* Styles for the main container */
 .main {
+    /* Add padding to the bottom of the container */
     padding: 0 0 3rem 0;
 }
 
-
+/* Styles for button inside the main container */
 .main > button {
+    /* Add rounded corners to the button */
     border-radius: 5px;
+    /* Add a gray border to the button */
     border: 1px solid gray;
+    /* Add some padding to the button */
     padding: 5px;
+    /* Set the background color to the primary color variable */
     background-color: $primary-color;
+    /* Add a cursor pointer when hovering the button */
     cursor: pointer;
 }
 
+/* Styles for the form container */
 .form {
+    /* Make the form container a flex container and align the items vertically */
     display: flex;
     flex-direction: column;
+    /* Set a width of 500 pixels for the form container */
     width: 500px;
+    /* Set a height of 300 pixels for the form container */
     height: 300px;
+    /* Add space between the items inside the form container */
     justify-content: space-evenly;
 
+    /* Styles for div container inside the form */
     div {
+        /* Make the div container a flex container and align the items vertically */
         display: flex;
         flex-direction: column;
 
+        /* Styles for the input button inside the div */
         input[type=submit] {
-
+            /* Add rounded corners to the input button */
             border-radius: 5px;
+            /* Add a gray border to the input button */
             border: 1px solid gray;
+            /* Add some padding to the input button */
             padding: 5px;
+            /* Set the background color to the primary color variable */
             background-color: $primary-color;
+            /* Add a cursor pointer when hovering the input button */
             cursor: pointer;
-
         }
     }
 }
