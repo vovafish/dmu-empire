@@ -59,7 +59,7 @@ const SignUpPage = () => {
       <div>
         <div className="mainContainer">
           <main className={style.main}>
-            <h1 className="main-title">Register</h1>
+            <h1 className="main-title">Registeration</h1>
             {errorMessage && <div className="fail">{errorMessage}</div>}
             <div className={style.form}>
               <input
