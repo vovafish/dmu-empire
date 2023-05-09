@@ -93,7 +93,10 @@ const CarsListPage = () => {
         <main className={style.main}>
           <h1 className="main-title light">Cars</h1>
           {user && user.isAdmin && (
-            <button className={style.insert} onClick={handleInsert}>
+            <button
+              className={`${style.insert} main-btn`}
+              onClick={handleInsert}
+            >
               Insert
             </button>
           )}
