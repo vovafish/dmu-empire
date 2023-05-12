@@ -26,6 +26,12 @@ class $bus extends EventEmitter {
     this.state.userdata = data;
     this.emit('userdata', this.state.userdata);
   }
+  addToCart(data: any): void {
+    this.state.cart.push(data);
+    console.log(this.state.cart);
+    this.addCartCount();
+    this.emit('cart', this.state.cart);
+  }
   addCartCount(): void {
     this.state.cartCount++;
     this.emit('cartCount', this.state.cartCount);

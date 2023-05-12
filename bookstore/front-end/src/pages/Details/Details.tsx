@@ -34,7 +34,7 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import {getDetailsById}  from '../../api/products.js';
+import {getDetailsById}  from '../../api/books.js';
 import Skeleton from '@mui/material/Skeleton';
 import $bus from '../../tools/$bus';
 

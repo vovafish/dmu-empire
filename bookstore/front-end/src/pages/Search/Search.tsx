@@ -18,7 +18,7 @@ import {
 } from '@mui/material';
 
 import '@mui/material';
-import { getBooks,searchBooks } from './../../api/books.js';
+import { getBooks } from './../../api/books.js';
 
 import $bus from '../../tools/$bus';
 interface HomeState {
@@ -30,7 +30,6 @@ interface HomeState {
   };
   booklist: [];
   isLoading: boolean;
-  searchText: string;
 }
 
 
@@ -66,7 +65,7 @@ function BookCard({ book }) {
         <Button size="small" color="primary" onClick={() => $bus.addToCart(book)}>
           Add to Cart
         </Button>
-        <Button size="small" color="primary" onClick={() => navigate('/details/' + book.id)}>
+        <Button size="small" color="primary" onClick={() => navigate('/details/'+book.id)}>
           View Detail
         </Button>
       </CardActions>
@@ -87,7 +86,6 @@ class Home extends Component<{}, HomeState> {
       },
       booklist: [],
       isLoading: true,
-      searchText: '',
     };
 
   }
@@ -97,31 +95,14 @@ class Home extends Component<{}, HomeState> {
 
     $bus.addListener('addCartCount', this.AddCartCount);
 
-
-    //判断url是否是search/xxx
-    let url = window.location.href;
-    let urlArr = url.split('/');
-    let searchText = urlArr[urlArr.length - 1];
-    this.setState({ searchText: searchText });
-    console.log("urlArr",urlArr);
-    console.log("searchText",searchText);
-    
-    if (searchText !== '') {
-      let bookRes = await searchBooks(searchText);
-      this.setState({ booklist: bookRes.books }, () => {
-        console.log(this.state.booklist);
-        // set isLoading to false
-        this.setState({ isLoading: false });
-      });
-    } else {
-
-      let bookRes = await getBooks();
-      this.setState({ booklist: bookRes.books }, () => {
-        console.log(this.state.booklist);
-        // set isLoading to false
-        this.setState({ isLoading: false });
-      });
-    }
+    // get book
+    // this.state.booklist = await getBooks();
+    let bookRes = await getBooks();
+    this.setState({ booklist: bookRes.books }, () => {
+      console.log(this.state.booklist);
+      // set isLoading to false
+      this.setState({ isLoading: false });
+    });
 
 
   }
@@ -160,17 +141,16 @@ class Home extends Component<{}, HomeState> {
 
         <Container maxWidth="lg" sx={{ mt: 3 }}>
           <Typography variant="h3" sx={{ mb: 3 }}>
-            {this.state.searchText == '' ? ('Welcome to Online BookStore '):<p>{'Search result of:'}<b>{this.state.searchText}</b></p>}
+            Welcome to Online Bookstore
           </Typography>
           <Typography variant="h5" sx={{ mb: 2 }}>
-            
-            {this.state.searchText == '' ? ('Bestselling Books'):<p></p>}
+            Bestselling Books
           </Typography>
           {this.state.isLoading === false ? (
 
             <Container maxWidth="md" sx={{ display: 'flex', flexWrap: 'wrap' }}>
               {this.state.booklist.map((book) => (
-                <BookCard key={book._id} book={book} />
+                <BookCard key={book.id} book={book} />
               ))}
             </Container>
           ) : (<div>loading</div>)}

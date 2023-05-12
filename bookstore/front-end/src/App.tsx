@@ -8,10 +8,15 @@ import Details from './pages/Details/Details';
 import About from './pages/About/About';
 import Footer from './pages/Footer/Footer';
 import Header from './pages/Header/Header';
-import Login from './pages/Login/LoginPage';
+// import Login from './pages/Login/LoginPage';
+
+
+import Search from './pages/Home/Home';
+
+
 import NewLogin from './pages/Login/newLoginPage';
 
-import $bus from './tools/$bus';
+import $bus from './tools/$bus';  
 
 import './styles/BaseStyles.scss';
 
@@ -39,6 +44,9 @@ export function App() {
             <Route path="/" element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="details/:id" element={<Details />} />
+
+            <Route path="Search/:q" element={<Search />} />
+            
             {/* <Route path="login" element={<Login />} /> */}
             <Route path="login" element={<NewLogin />} />
             

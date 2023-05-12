@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -60,14 +60,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Header = () => {
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
+  const [cart, setCart] = useState('');
+
+  useEffect(() => {
+
+    $bus.addListener('cart', (cart) => setCart(cart));
+
+  }, []);
+
+
 
   const handleLogoClick = () => {
     navigate('/');
+    location.reload()
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
-    navigate(`/search?q=${searchText}`);
+    navigate(`/search/${searchText}`);
+    location.reload()
     setSearchText('');
   };
 
@@ -110,7 +121,7 @@ const Header = () => {
         }
         
         <IconButton color="inherit">
-          <Badge badgeContent={0} showZero color="primary">
+          <Badge badgeContent={cart.length} showZero color="primary">
             <ShoppingCartIcon />
           </Badge>
         </IconButton>

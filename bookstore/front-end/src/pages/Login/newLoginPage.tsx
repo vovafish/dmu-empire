@@ -10,6 +10,7 @@ import {
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
+import { registerUser,loginUser } from '../../api/user.js'
 
 export default function SignInSide() {
     const [formType, setFormType] = useState('signin');
@@ -46,50 +47,52 @@ export default function SignInSide() {
                     // Call API to Sign in
                     const { email, password } = formik.values;
 
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email,
-                            password
-                        }),
-                    };
 
-                    const response = await fetch('http://localhost:3000/login', requestOptions);
-                    alert(response.status)
-                    if (response.status === 200) {
-                        alert('User logged in successfully');
-                        setFormType('signin');
-                    } else {
+                    try {
+                        const response = await loginUser(email, password)
+                        const { token, message,user } = response;
+                        if (token) {
+                            localStorage.setItem('jwt', token);
+                            localStorage.setItem('userId', user.id);
+                            localStorage.setItem('userInfo', {...user});
+                            // Redirect user to the homepage or another page
+                        } else {
+                            // Display the error message to the user
+                            console.error(message);
+                        }
+
+                        if (response.status === 200) {
+                            alert('User logged in successfully');
+                            setFormType('signin');
+                        } else {
+                        }
+                    } catch (err) {
+                        console.error('Error logging in:', err.message);
                     }
+
+                    
+                    
 
                 } else {
                     // Call API to Register
                     const { email, password, firstName, lastName } = formik.values;
 
 
-                    const requestOptions = {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            email,
-                            password,
-                            first_name: firstName,
-                            last_name: lastName,
-                        }),
-                    };
 
-                    const response = await fetch('http://localhost:3000/register', requestOptions);
-                    if (response.status === 201) {
-                        alert('User registered successfully');
-                        setFormType('signin');
-                    } else {
-                        const errorData = await response.json();
-                        alert(`Error: ${errorData.message}`);
+
+                    try {
+                        const response = await registerUser(email,
+                            password,firstName,lastName,)
+
+                        if (response.status === 201) {
+                            alert('User registered successfully');
+                            setFormType('signin');
+                        } else {
+                            const errorData = await response.json();
+                            alert(`Error: ${errorData.message}`);
+                        }
+                    } catch (err) {
+                        console.error('Error register:', err.message);
                     }
                 }
                 // handle successful response
