@@ -36,7 +36,9 @@ export async function registerUser(email, password,first_name,last_name) {
         },
         body: JSON.stringify({ email, password,first_name,last_name }),
     });
-
+    if(response.status===400){
+        return {message:"User already exists"}
+    }
     const data = await response.json();
     return data;
 }

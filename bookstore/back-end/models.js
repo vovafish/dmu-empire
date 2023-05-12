@@ -64,7 +64,6 @@ const BookSchema = new mongoose.Schema({
 
 const Book = mongoose.model('books', BookSchema);
 
-
 // Order schema and model
 const OrderSchema = new mongoose.Schema({
   user: {
@@ -74,16 +73,31 @@ const OrderSchema = new mongoose.Schema({
   items: [
     {
       book: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Book',
+        _id: mongoose.Schema.Types.ObjectId,
+        title: String,
+        author: String,
+        price: Number,
       },
       quantity: Number,
     },
   ],
   totalCost: Number,
+  discountCode: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'DiscountCode',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },status: {
+    type: String,
+    enum: ['pending', 'cancelled', 'completed'],
+    default: 'pending',
+  },
 });
 
 const Order = mongoose.model('orders', OrderSchema);
+
 
 // Discount code schema and model
 const DiscountCodeSchema = new mongoose.Schema({

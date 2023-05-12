@@ -1,23 +1,10 @@
-// import { useParams } from "react-router-dom";
+
 import { HashRouter, Route, Routes, Link } from 'react-router-dom';
 import Album from "../Home/Album";
 
-// function Details() {
-//     let id = useParams<{ id: string }>().id;
-//     return (<>
-//         <h1>
-//             Details page id:{id}
-//         </h1>
-//         <Album />
-//     </>)
-//     ;
-//   }
-
-//   export default Details;
-
-
 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
     Box,
     Grid,
@@ -34,14 +21,51 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
-import {getDetailsById}  from '../../api/books.js';
+import { searchBookById,addComment } from '../../api/books.js';
 import Skeleton from '@mui/material/Skeleton';
 import $bus from '../../tools/$bus';
+import bookImg from './../../imgs/DALL-E book.png'
 
 const ProductDetails = () => {
+
+
+    const navigate = useNavigate();
     const { id } = useParams<{ id: string }>();
     const [quantity, setQuantity] = useState<number>(1);
-    const { isLoading, data: product } = useQuery(['details', id], () => getDetailsById(id), { cacheTime: 0 });
+    const { isLoading, data: book } = useQuery(['details', id], () => searchBookById(id), { cacheTime: 0,onSuccess: (data) => {
+        setComments(data.comments);
+     }});
+
+    const [commentText, setCommentText] = useState<string>('');
+    const [comments, setComments] = useState<Array<any>>([]);
+
+
+    const handleCommentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setCommentText(event.target.value);
+    };
+
+    const handleSubmitComment = async (e) => {
+        e.preventDefault();
+        if (commentText.trim() === '') {
+            alert('Comment text cannot be empty');
+            return;
+        }
+
+        try {
+            const newCommentData = await addComment(id, commentText);
+            console.log('newComment',newCommentData);
+            if (newCommentData.comment) {
+                setComments((prevComments) => [...prevComments, newCommentData.comment]);
+                setCommentText('');
+            }else{
+                alert('Failed to add comment');
+            }
+            
+        } catch (error) {
+            alert('Failed to add comment');
+        }
+    };
+
 
     const handleAddQuantity = () => {
         setQuantity((prev) => prev + 1);
@@ -68,13 +92,13 @@ const ProductDetails = () => {
                         <Skeleton variant="rectangular" width={345} height={400} />
                     ) : (
                         <Card sx={{ maxWidth: 345 }}>
-                            <CardMedia component="img" height="200" image={product.image} alt={product.title} />
+                            <CardMedia component="img" height="200" image={bookImg} alt={book.title} />
                             <CardContent>
                                 <Typography gutterBottom variant="h5" component="div">
-                                    {product.title}
+                                    {book.title}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary">
-                                    {product.description}
+                                    {book.description}
                                 </Typography>
                             </CardContent>
                         </Card>
@@ -89,24 +113,24 @@ const ProductDetails = () => {
                     ) : (
                         <>
                             <Typography variant="h6" gutterBottom>
-                                Product Details
+                                Book Details: {book.title}
                             </Typography>
                             <Divider />
                             <List sx={{ pt: 2 }}>
                                 <ListItem disablePadding>
-                                    <ListItemText primary="Product Name" secondary={product.title} />
+                                    <ListItemText primary="Book title" secondary={book.title} />
                                 </ListItem>
                                 <ListItem disablePadding>
-                                    <ListItemText primary="Product Description" secondary={product.description} />
+                                    <ListItemText primary="Book author" secondary={book.author} />
                                 </ListItem>
                                 <ListItem disablePadding>
-                                    <ListItemText primary="Product Price" secondary={`$${product.price}`} />
+                                    <ListItemText primary="Book Price" secondary={`$${book.price}`} />
                                 </ListItem>
                                 <ListItem disablePadding>
-                                    <ListItemText primary="Product Brand" secondary={product.brand} />
+                                    <ListItemText primary="Book publisher" secondary={book.publisher} />
                                 </ListItem>
                                 <ListItem disablePadding>
-                                    <ListItemText primary="Product Category" secondary={product.category} />
+                                    <ListItemText primary="Book Category" secondary={book.category} />
                                 </ListItem>
                             </List>
                             <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
@@ -129,17 +153,42 @@ const ProductDetails = () => {
                                     -
                                 </Button>
                             </Box>
-                            {/* <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={$bus.addCartCount()}>
+                            <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => $bus.addToCart({...book,quantity})}>
                                 Add to Cart
-                            </Button> */}
-                            <Button variant="contained" color="primary" sx={{ mt: 3 }} onClick={() => $bus.addCartCount()}>
-  Add to Cart
-</Button>
+                            </Button>
+                            <Button variant="contained" color="primary" sx={{ mt: 3, left:30 }} onClick={() => {
+                                navigate('/cart')
+                            }}>
+                                Go to Cart
+                            </Button>
                         </>
                     )}
                 </Grid>
             </Grid>
+            <Box sx={{ mt: 3 }}>
+                <TextField
+                    fullWidth
+                    multiline
+                    rows={4}
+                    value={commentText}
+                    onChange={handleCommentChange}
+                    variant="outlined"
+                    placeholder="Enter your comment here"
+                />
+                <Button variant="contained" color="primary" onClick={handleSubmitComment} sx={{ mt: 2 }}>
+                    Submit Comment
+                </Button>
+            </Box>
+            <h2>Reviews</h2>
+            <List sx={{ mt: 3 }}>
+                {comments.map((comment, index) => (
+                    <ListItem key={index}>
+                        <ListItemText primary={comment.text} secondary={`Posted on ${comment.createdAt}`} />
+                    </ListItem>
+                ))}
+            </List>
         </Box>
+        
     );
 };
 

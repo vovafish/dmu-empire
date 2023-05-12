@@ -146,6 +146,24 @@ router.get('/books/search/:query', async (ctx, next) => {
     ctx.body = { books };
 });
 
+// Search book by id
+router.get('/books/:id', async (ctx, next) => {
+    const id = ctx.params.id;
+    const book = await Book.find({
+        _id: id,
+    });
+    if (book) {
+        ctx.status = 200;
+        ctx.body = book[0] ;
+    } else {
+        ctx.status = 404;
+        ctx.body = { message: 'Book not found' };
+    }
+});
+
+
+
+
 // Sort books
 router.get('/books/sort/:field', async (ctx, next) => {
     const field = ctx.params.field;
@@ -154,19 +172,27 @@ router.get('/books/sort/:field', async (ctx, next) => {
     ctx.body = { books };
 });
 
-
-
 // Checkout and pay
 router.post('/checkout', isAuthenticated, async (ctx, next) => {
     const { cart, discountCode } = ctx.request.body;
 
     // Calculate total cost
     let totalCost = 0;
+    const items = [];
     for (const item of cart) {
-        const book = await Book.findById(item.bookId);
+        const book = await Book.findById(item._id);
         totalCost += book.price * item.quantity;
+        items.push({
+            book: {
+                _id: book._id,
+                title: book.title,
+                author: book.author,
+                price: book.price,
+            },
+            quantity: item.quantity,
+        });
     }
-
+    
     // Apply discount
     const discount = await DiscountCode.findOne({ code: discountCode });
     if (discount) {
@@ -175,8 +201,9 @@ router.post('/checkout', isAuthenticated, async (ctx, next) => {
 
     const order = new Order({
         user: ctx.state.user.id,
-        items: cart,
+        items,
         totalCost,
+        discountCode: discount ? discount._id : null,
     });
 
     await order.save();
@@ -186,19 +213,51 @@ router.post('/checkout', isAuthenticated, async (ctx, next) => {
 });
 
 
+
 // Order history
 router.get('/orders', isAuthenticated, async (ctx, next) => {
     const orders = await Order.find({ user: ctx.state.user.id });
     ctx.status = 200;
-    ctx.body = { orders };
+    ctx.body = [...orders];
 });
 
 // Track order
 router.get('/orders/:orderId', isAuthenticated, async (ctx, next) => {
     const order = await Order.findById(ctx.params.orderId);
     ctx.status = 200;
-    ctx.body = { order };
+    ctx.body =  {order};
 });
+
+// Update order status
+router.put('/orders/:id/status', isAuthenticated, async (ctx, next) => {
+    const { status } = ctx.request.body;
+  
+    if (!['pending', 'cancelled', 'completed'].includes(status)) {
+      ctx.status = 400;
+      ctx.body = { message: 'Invalid status' };
+      return;
+    }
+  
+    const order = await Order.findById(ctx.params.id);
+    if (!order) {
+      ctx.status = 404;
+      ctx.body = { message: 'Order not found' };
+      return;
+    }
+  
+    if (order.user.toString() !== ctx.state.user.id) {
+      ctx.status = 403;
+      ctx.body = { message: 'You do not have permission to update this order' };
+      return;
+    }
+  
+    order.status = status;
+    await order.save();
+  
+    ctx.status = 200;
+    ctx.body = { message: 'Order status updated successfully' };
+  });
+  
 
 // Add a comment to a book
 router.post('/books/:bookId/comments',isAuthenticated, async (ctx, next) => {
@@ -222,6 +281,7 @@ router.post('/books/:bookId/comments',isAuthenticated, async (ctx, next) => {
     const comment = {
         user: userId,
         text: text,
+        createdAt: new Date(),
     };
 
     book.comments.push(comment);
@@ -230,12 +290,6 @@ router.post('/books/:bookId/comments',isAuthenticated, async (ctx, next) => {
     ctx.status = 201;
     ctx.body = { message: 'Comment added successfully', comment };
 });
-
-
-// Write and view reviews
-// ... (you can create a new Review model and associate it with the Book model)
-
-// Add the remaining routes (e.g., delete from cart, remove from wish list) and their corresponding logic
 
 
 

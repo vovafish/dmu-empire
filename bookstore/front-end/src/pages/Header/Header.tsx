@@ -30,6 +30,12 @@ const Search = styled('div')(({ theme }) => ({
   },
 }));
 
+//logout
+const logout = () => {
+  $bus.emit('logout');
+  location.reload()
+}
+
 const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: '100%',
@@ -61,10 +67,43 @@ const Header = () => {
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState('');
   const [cart, setCart] = useState('');
+  const [cartCount, setCartCount] = useState();
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    loginUserData()
+  }, []);
+
+  const loginUserData=()=>{
+    const userInfo = localStorage.getItem('userInfo');
+      
+    if (userInfo) {
+      let user = JSON.parse(localStorage.getItem('userInfo'));
+      $bus.setUserData({ ...user });
+      setUser(user);
+      console.log('user',user);
+      console.log('User logged in successfully',$bus.state.userdata);
+      
+    }
+  }
 
   useEffect(() => {
 
+    //从localStorage中获取cart数据
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      $bus.setCart(JSON.parse(cart));
+    }
+    
+    $bus.addListener('login', (cart) => loginUserData());
     $bus.addListener('cart', (cart) => setCart(cart));
+    $bus.addListener('cartCount', (cartCount) => setCartCount(cartCount));
+
+    $bus.addListener('logout', () => {
+      localStorage.clear()
+      $bus.setUserData({})
+    }); 
 
   }, []);
 
@@ -113,15 +152,24 @@ const Header = () => {
           Home
         </Button>
         {
-          $bus.state.userdata.username!==null?
-          ('Welcome,' + $bus.state.userdata.username):
+          user&&user.first_name!==null  ?
+          ('Welcome,' + $bus.state.userdata.first_name):
           (<Button color="inherit" onClick={() => navigate('/login')}>
           Login
         </Button>)
         }
+
+        {user&&user.first_name!==null?(<Button color="inherit" onClick={() => logout()}>
+          logout
+        </Button>):(null)}
+
+        {user&&user.first_name!==null?(<Button color="inherit" onClick={() => navigate('/orders')}>
+          My Orders
+        </Button>):(null)}
         
-        <IconButton color="inherit">
-          <Badge badgeContent={cart.length} showZero color="primary">
+        
+        <IconButton color="inherit" onClick={()=>navigate('/cart')}>
+          <Badge badgeContent={cart.length} showZero color="primary"  >
             <ShoppingCartIcon />
           </Badge>
         </IconButton>

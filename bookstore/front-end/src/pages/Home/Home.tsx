@@ -58,7 +58,10 @@ function BookCard({ book }) {
             {book.title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            {book.author}
+            <b>{book.author}</b>
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {book.category}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -66,7 +69,7 @@ function BookCard({ book }) {
         <Button size="small" color="primary" onClick={() => $bus.addToCart(book)}>
           Add to Cart
         </Button>
-        <Button size="small" color="primary" onClick={() => navigate('/details/' + book.id)}>
+        <Button size="small" color="primary" onClick={() => navigate('/details/' + book._id)}>
           View Detail
         </Button>
       </CardActions>
@@ -95,10 +98,6 @@ class Home extends Component<{}, HomeState> {
   async componentDidMount() {
     $bus.addListener('setUserData', this.SettingUserData);
 
-    $bus.addListener('addCartCount', this.AddCartCount);
-
-
-    //判断url是否是search/xxx
     let url = window.location.href;
     let urlArr = url.split('/');
     let searchText = urlArr[urlArr.length - 1];
@@ -142,8 +141,7 @@ class Home extends Component<{}, HomeState> {
 
   AddToCart(book) {
     console.log('AddToCart', book);
-    let count = this.state.cartCount
-
+    $bus.addToCart(book)
   }
 
   AddCartCount(e) {
@@ -176,14 +174,6 @@ class Home extends Component<{}, HomeState> {
           ) : (<div>loading</div>)}
 
 
-          {/* <Typography variant="h5" sx={{ mb: 2 }}>
-          Discounted Books
-        </Typography>
-        <Container maxWidth="md" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-          {this.state.booklist.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
-        </Container> */}
         </Container>
       </>
     );

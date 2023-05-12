@@ -8,6 +8,9 @@ import Details from './pages/Details/Details';
 import About from './pages/About/About';
 import Footer from './pages/Footer/Footer';
 import Header from './pages/Header/Header';
+import Cart from './pages/Cart/Cart';
+import Checkout from './pages/Checkout/Checkout';
+import MyOrders from './pages/Order/Order';
 // import Login from './pages/Login/LoginPage';
 
 
@@ -41,16 +44,16 @@ export function App() {
       <div id='main'>
         <QueryClientProvider client={queryClient}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="details/:id" element={<Details />} />
+            <Route path="/" key={'1'} element={<Home />} />
+            <Route path="about" key={'2'} element={<About />} />
+            <Route path="details/:id" key={'3'} element={<Details />} />
+            <Route path="Search/:q" key={'4'} element={<Search />} />
+            <Route path="login" key={'5'} element={<NewLogin />} />
+            <Route path="cart" key={'6'} element={<Cart />} />
+            <Route path="checkout" key={'7'} element={<Checkout />} />
+            <Route path="orders" key={'8'} element={<MyOrders />} />
 
-            <Route path="Search/:q" element={<Search />} />
-            
-            {/* <Route path="login" element={<Login />} /> */}
-            <Route path="login" element={<NewLogin />} />
-            
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" key={'0'} element={<NotFound />} />
           </Routes>
         </QueryClientProvider>
       </div>

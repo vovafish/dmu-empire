@@ -65,7 +65,7 @@ function BookCard({ book }) {
         <Button size="small" color="primary" onClick={() => $bus.addToCart(book)}>
           Add to Cart
         </Button>
-        <Button size="small" color="primary" onClick={() => navigate('/details/'+book.id)}>
+        <Button size="small" color="primary" onClick={() => navigate('/details/'+book._id)}>
           View Detail
         </Button>
       </CardActions>
@@ -156,14 +156,6 @@ class Home extends Component<{}, HomeState> {
           ) : (<div>loading</div>)}
 
 
-          {/* <Typography variant="h5" sx={{ mb: 2 }}>
-          Discounted Books
-        </Typography>
-        <Container maxWidth="md" sx={{ display: 'flex', flexWrap: 'wrap' }}>
-          {this.state.booklist.map((book) => (
-            <BookCard key={book.id} book={book} />
-          ))}
-        </Container> */}
         </Container>
       </>
     );

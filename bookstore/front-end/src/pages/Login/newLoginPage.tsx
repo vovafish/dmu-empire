@@ -11,6 +11,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { registerUser,loginUser } from '../../api/user.js'
+import $bus from '../../tools/$bus.js';
 
 export default function SignInSide() {
     const [formType, setFormType] = useState('signin');
@@ -54,19 +55,26 @@ export default function SignInSide() {
                         if (token) {
                             localStorage.setItem('jwt', token);
                             localStorage.setItem('userId', user.id);
-                            localStorage.setItem('userInfo', {...user});
+                            localStorage.setItem('userInfo', JSON.stringify(user));
+                            $bus.emit('login', user);
+                            $bus.setUserData({ ...user });
+                            navigate('/');
+                            console.log('User logged in successfully',$bus.state.userdata);
                             // Redirect user to the homepage or another page
                         } else {
                             // Display the error message to the user
+                            alert(message);
                             console.error(message);
                         }
 
                         if (response.status === 200) {
                             alert('User logged in successfully');
+                            navigate('/');
                             setFormType('signin');
                         } else {
                         }
                     } catch (err) {
+                        alert(err.message);
                         console.error('Error logging in:', err.message);
                     }
 
@@ -88,15 +96,14 @@ export default function SignInSide() {
                             alert('User registered successfully');
                             setFormType('signin');
                         } else {
-                            const errorData = await response.json();
-                            alert(`Error: ${errorData.message}`);
+                            alert(`${response.message}`);
                         }
                     } catch (err) {
+                        alert(err.message);
                         console.error('Error register:', err.message);
                     }
                 }
                 // handle successful response
-                navigate('/');
             } catch (error) {
                 console.error('Error:', error);
             }
@@ -216,11 +223,6 @@ export default function SignInSide() {
                             {formType === 'signin' ? 'Sign in' : 'Register'}
                         </Button>
                         <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?!!
-                                </Link>
-                            </Grid>
                             <Grid item>
                                 <Link
                                     variant="body2"
